@@ -1,0 +1,42 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">Quora</a>
+	  </div>
+	  <div id="navbar" class="collapse navbar-collapse">
+	    <ul class="nav navbar-nav">
+	      <li><a href="/">Home</a></li>
+	      <li><a href="/questions">Top stories</a></li>
+	      <li><a href="/users">See all users</a></li>
+	      <li><a href="/users/<%= current_user.id %>">Your profile</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions">Your questions</a></li>
+	      <li><a href="/users/<%= current_user.id %>/answers">Your answers</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions/new">Ask a question</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div class="container">
+	<h1>Replying to:</h1>
+	<h2><%= @question.title%></h2>
+	<h3><%= @question.description%></h3>
+	<p>posted by: <%= @question.user.name %></p>
+
+
+	<form method="post" action="/questions/<%= @question.id %>/answers">
+		<input type=text placeholder="Write your answer" name="comment"><br>
+	    <input type=submit value="Submit">
+	</form>
+	<form method="get" action="/questions/<%= @question.id %>">
+	    <input type=submit value="return back to this question">
+	</form>
+
+	<p><%= @message %></p>
+</div>

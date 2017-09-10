@@ -1,0 +1,51 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">Quora</a>
+	  </div>
+	  <div id="navbar" class="collapse navbar-collapse">
+	    <ul class="nav navbar-nav">
+	      <li><a href="/">Home</a></li>
+	      <li><a href="/questions">Top stories</a></li>
+	      <li><a href="/users">See all users</a></li>
+	      <li><a href="/users/<%= current_user.id %>">Your profile</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions">Your questions</a></li>
+	      <li><a href="/users/<%= current_user.id %>/answers">Your answers</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions/new">Ask a question</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<h1>Question <%= @question.id %>: <%= @question.title %></h1>
+				<h2>description: <%= @question.description %></h2>
+				<p>posted by: <%= @question.user.name %></p>
+		</div>
+	</div>
+
+	<form action="/questions/<%= @question.id %>/answers/new" method="get">
+	  <input type="submit" value="reply now" required>
+	</form>
+
+	<div class="row">
+		<div class="col-md-10">
+			<h2><%= @question.answers.count %> Answers</h2>
+			<% if @answers %>
+				<% @answers.each do |answer| %>
+					<h3><%= answer.user.name %></h3>
+					<p><%= answer.comment %></p>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	
+</div>

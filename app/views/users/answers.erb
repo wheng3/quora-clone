@@ -1,0 +1,52 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+	    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	      <span class="sr-only">Toggle navigation</span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	      <span class="icon-bar"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">Quora</a>
+	  </div>
+	  <div id="navbar" class="collapse navbar-collapse">
+	    <ul class="nav navbar-nav">
+	      <li><a href="/">Home</a></li>
+	      <li><a href="/questions">Top stories</a></li>
+	      <li><a href="/users">See all users</a></li>
+	      <li><a href="/users/<%= current_user.id %>">Your profile</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions">Your questions</a></li>
+	      <li class="active"><a href="/users/<%= current_user.id %>/answers">Your answers</a></li>
+	      <li><a href="/users/<%= current_user.id %>/questions/new">Ask a question</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div class="container">
+	<div class="page-header">
+		<h1><%= @user.name %>'s Answers</h1>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<% if @answers %>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Question</th>
+							<th>Comment</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @answers.each do |answer| %>
+							<tr>
+								<td> <%= answer.question.title %> </td> 
+								<td> <%= answer.comment %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+	</div>
+</div>
